@@ -50,8 +50,8 @@ public class ImageOCR {
         cmd.add("");  
         cmd.add(outputFile.getName());  
         cmd.add(LANG_OPTION);  
-//        cmd.add("eng"); 	//英文识别包
-        cmd.add("chi_sim");	//中文语言识别包，并不好用
+        cmd.add("eng"); 	//英文识别包
+//        cmd.add("chi_sim");	//中文语言识别包，并不好用
 //        cmd.add("num");  
         
   
@@ -107,7 +107,7 @@ public class ImageOCR {
     
     public static void main(String[] args) {
     	try {
-			System.out.println(recognizeText(new File("D://superKF/1.jpg")));
+			System.out.println(recognizeText(new File("D://1.tif")));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
