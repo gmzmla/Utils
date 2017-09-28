@@ -16,26 +16,35 @@ import com.sun.jna.platform.win32.WinUser.HHOOK;
 import com.sun.jna.platform.win32.WinUser.KBDLLHOOKSTRUCT;
 import com.sun.jna.platform.win32.WinUser.LowLevelKeyboardProc;
 import com.sun.jna.platform.win32.WinUser.MSG;  
-  
+
 
 public class KeyboardHook implements Runnable{
     private static HHOOK hhk;  
     private static LowLevelKeyboardProc keyboardHook;  
+    private static Thread th=new Thread(new MapleStory2(true));
     final static User32 lib = User32.INSTANCE;  
     private boolean [] on_off=null;  
   
     public KeyboardHook(boolean [] on_off){  
         this.on_off = on_off;  
     }  
-  
+    
     public void run() {  
-  
         HMODULE hMod = Kernel32.INSTANCE.GetModuleHandle(null);  
         keyboardHook = new LowLevelKeyboardProc() {  
-            public LRESULT callback(int nCode, WPARAM wParam, KBDLLHOOKSTRUCT info) {  
-                if(info.flags!=0){
+            public LRESULT callback(int nCode, WPARAM wParam, KBDLLHOOKSTRUCT info) { 
+                
+                if(info.flags==0&&info.vkCode==27){ //停止线程
+                    System.out.println("停止线程");
+                    th.interrupt();
                     return null;
                 }
+                if(info.flags!=0||info.vkCode!=192){
+                    return null;
+                }
+                //启动线程
+                th.start();
+                
                 SimpleDateFormat df1 = new SimpleDateFormat("yyyy-MM-dd");  
                 SimpleDateFormat df2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
                 String fileName=df1.format(new Date());  

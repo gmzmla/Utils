@@ -2,13 +2,26 @@ package com.util.maoxiandao;
 
 import java.awt.Robot;
 
-public class MapleStory2 {
+public class MapleStory2 implements Runnable{
     
-    public static void main(String[] args) throws Exception {
-        Robot robot = new Robot();
-        Thread.sleep(5000);
-        robot.keyPress(99);
-        robot.keyRelease(99);
+    private boolean on_off=false;  
+    
+    public MapleStory2(boolean on_off){  
+        this.on_off = on_off;  
+    }  
+    
+    @Override
+    public void run() {
+        try {
+            Robot robot = new Robot();
+            while(on_off){
+                Thread.sleep(1000);
+                robot.keyPress(192);
+                robot.keyRelease(192);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-    
+  
 }
