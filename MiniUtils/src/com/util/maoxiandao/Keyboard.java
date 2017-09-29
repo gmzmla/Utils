@@ -18,14 +18,14 @@ import com.sun.jna.platform.win32.WinUser.LowLevelKeyboardProc;
 import com.sun.jna.platform.win32.WinUser.MSG;  
 
 
-public class KeyboardHook implements Runnable{
+public class Keyboard implements Runnable{
     private static HHOOK hhk;  
     private static LowLevelKeyboardProc keyboardHook;  
     private Thread th=new Thread(new MapleStory2(true));
     final static User32 lib = User32.INSTANCE;  
     private boolean [] on_off=null;  
   
-    public KeyboardHook(boolean [] on_off){  
+    public Keyboard(boolean [] on_off){  
         this.on_off = on_off;  
     }  
     
