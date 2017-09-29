@@ -5,7 +5,7 @@ import java.awt.event.InputEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class MapleStory2 implements Runnable{
+public class AIOperation implements Runnable{
     
     private Date date=new Date();
     
@@ -13,7 +13,7 @@ public class MapleStory2 implements Runnable{
     
     private boolean on_off=false;  
     
-    public MapleStory2(boolean on_off){  
+    public AIOperation(boolean on_off){  
         this.on_off = on_off;  
     }  
     
@@ -47,10 +47,10 @@ public class MapleStory2 implements Runnable{
         int b=10;   //秒，向右移动时间
         int c=10;   //秒,向上移动时间
         
-        int x=0;    //X轴
-        int y=0;    //Y轴
-        int x1=0;   //选择频道
-        int y1=0;   //选择频道
+        int x=392;    //X轴
+        int y=579;    //Y轴
+        int x1=392;   //选择频道
+        int y1=579;   //选择频道
         
         /* *****************飞行 脱离战斗*******************/
         //按键6 code=54

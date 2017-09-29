@@ -21,7 +21,7 @@ import com.sun.jna.platform.win32.WinUser.MSG;
 public class Keyboard implements Runnable{
     private static HHOOK hhk;  
     private static LowLevelKeyboardProc keyboardHook;  
-    private Thread th=new Thread(new MapleStory2(true));
+    private Thread th=new Thread(new AIOperation(true));
     final static User32 lib = User32.INSTANCE;  
     private boolean [] on_off=null;  
   
@@ -43,7 +43,7 @@ public class Keyboard implements Runnable{
                     return null;
                 }
                 if(!th.isAlive()){
-                    th=new Thread(new MapleStory2(true));
+                    th=new Thread(new AIOperation(true));
                     th.start();
                 }
                 SimpleDateFormat df1 = new SimpleDateFormat("yyyy-MM-dd");  
