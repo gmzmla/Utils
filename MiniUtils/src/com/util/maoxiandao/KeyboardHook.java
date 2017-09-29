@@ -21,7 +21,7 @@ import com.sun.jna.platform.win32.WinUser.MSG;
 public class KeyboardHook implements Runnable{
     private static HHOOK hhk;  
     private static LowLevelKeyboardProc keyboardHook;  
-    private static Thread th=new Thread(new MapleStory2(true));
+    private Thread th=new Thread(new MapleStory2(true));
     final static User32 lib = User32.INSTANCE;  
     private boolean [] on_off=null;  
   
@@ -36,15 +36,16 @@ public class KeyboardHook implements Runnable{
                 
                 if(info.flags==0&&info.vkCode==27){ //停止线程
                     System.out.println("停止线程");
-                    th.interrupt();
+                    th.stop();
                     return null;
                 }
                 if(info.flags!=0||info.vkCode!=192){
                     return null;
                 }
-                //启动线程
-                th.start();
-                
+                if(!th.isAlive()){
+                    th=new Thread(new MapleStory2(true));
+                    th.start();
+                }
                 SimpleDateFormat df1 = new SimpleDateFormat("yyyy-MM-dd");  
                 SimpleDateFormat df2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
                 String fileName=df1.format(new Date());  
