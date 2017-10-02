@@ -21,16 +21,21 @@ public class AIOperation implements Runnable{
     public void run() {
         try {
             Robot robot = new Robot();
-            int s=3;    //秒
+            int s=420;    //秒
             System.out.println(df.format(date));
             while(on_off){
-                if(new Date().getTime()-date.getTime() >s*1000){
-                   operationAI(robot);
-                   date=new Date();
-                }
-                Thread.sleep(100);
+            	s=(int)(300+Math.random()*(s-300));
+//                if(new Date().getTime()-date.getTime() >s*1000){
+//                	Thread.sleep(500);
+//            		operationAI(robot);
+//                   date=new Date();
+//                }
+                Thread.sleep(500);
                 robot.keyPress(192);
+                Thread.sleep(s*1000);
                 robot.keyRelease(192);
+                Thread.sleep(500);
+        		operationAI(robot);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -45,16 +50,17 @@ public class AIOperation implements Runnable{
     private void operationAI(Robot robot) throws Exception{
         int a=5; //秒，飞行时间
         int b=10;   //秒，向右移动时间
-        int c=10;   //秒,向上移动时间
+        int c=5;   //秒,向上移动时间
         
-        int x=392;    //X轴
-        int y=579;    //Y轴
-        int x1=392;   //选择频道
-        int y1=579;   //选择频道
+        int x=1518;    //X轴
+        int y=112;    //Y轴
+        int x1=1556;   //选择频道
+        int y1=317;   //选择频道
         
         /* *****************飞行 脱离战斗*******************/
         //按键6 code=54
         robot.keyPress(54);
+        Thread.sleep(500);
         robot.keyRelease(54);
         Thread.sleep(a*1000);
         
@@ -63,6 +69,7 @@ public class AIOperation implements Runnable{
         robot.mouseMove(x,y);
         //左击鼠标
         robot.mousePress(InputEvent.BUTTON1_MASK);
+        Thread.sleep(500);
         //释放左击 
         robot.mouseRelease(InputEvent.BUTTON1_MASK);
         Thread.sleep(2000);
@@ -70,6 +77,7 @@ public class AIOperation implements Runnable{
         robot.mouseMove(x1,y1);
         //左击鼠标
         robot.mousePress(InputEvent.BUTTON1_MASK);
+        Thread.sleep(500);
         //释放左击 
         robot.mouseRelease(InputEvent.BUTTON1_MASK);
         
@@ -78,6 +86,7 @@ public class AIOperation implements Runnable{
         /* ******************飞行******************/
         //按键6 code=54
         robot.keyPress(54);
+        Thread.sleep(500);
         robot.keyRelease(54);
         
         /* *****************飞行移动*******************/
@@ -92,6 +101,7 @@ public class AIOperation implements Runnable{
         
         /* ******************取消飞行******************/
         robot.keyPress(54);
+        Thread.sleep(500);
         robot.keyRelease(54);
     }
 }

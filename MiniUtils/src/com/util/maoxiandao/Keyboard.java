@@ -1,5 +1,7 @@
 package com.util.maoxiandao;
 
+import java.awt.AWTException;
+import java.awt.Robot;
 import java.io.BufferedWriter;  
 import java.io.File;  
 import java.io.FileWriter;  
@@ -37,6 +39,12 @@ public class Keyboard implements Runnable{
                 if(info.flags==0&&info.vkCode==27){ //停止线程
                     System.out.println("停止线程");
                     th.stop();
+                    try {
+						Robot robot = new Robot();
+						robot.keyRelease(192);
+					} catch (AWTException e) {
+						e.printStackTrace();
+					}
                     return null;
                 }
                 if(info.flags!=0||info.vkCode!=192){

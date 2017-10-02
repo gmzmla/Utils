@@ -7,7 +7,7 @@ public class Monitor {
 //        new Thread(new ProcessInfo(on_off)).start();  
     }  
     
-    public static void main(String[] args)  {    
+    public static void main(String[] args)  {  
         new Monitor();
     }
 }
